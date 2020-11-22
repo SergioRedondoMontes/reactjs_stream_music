@@ -16,18 +16,23 @@ export const Player = ({ songs }) => {
   const [playedSeconds, setPlayedSeconds] = useState(0);
   const [played, setPlayed] = useState(0);
   const [volume, setVolume] = useState(0.5);
-  const [position, setPosition] = useState(0);
   const [actualSong, setActualSong] = useState(songs[0]);
+  const [position, setPosition] = useState(0);
 
   useEffect(() => {
     setUrls(songs);
   }, [songs]);
 
+  const handleChangeSong = (newPosition) => {
+    setPosition(newPosition);
+    setActualSong(urls[newPosition]);
+  };
+
   return (
     <div>
       <ReactPlayer
         playing={play}
-        url={actualSong}
+        url={actualSong?.musicSrc}
         width="0px"
         height="0px"
         volume={volume}
@@ -39,9 +44,10 @@ export const Player = ({ songs }) => {
           );
         }}
       />
-
       <Grid container style={{ padding: "16px" }}>
-        <Grid item xs={6} md={11} />
+        <Grid item xs={6} md={11}>
+          <Typography variant="body1">{actualSong.name}</Typography>
+        </Grid>
         <Grid item xs={6} md={1}>
           <Grid container>
             <Grid item>
@@ -93,8 +99,7 @@ export const Player = ({ songs }) => {
             color={position === 0 ? "disabled" : "inherit"}
             onClick={() => {
               if (position > 0) {
-                setActualSong(urls[position - 1]);
-                setPosition(position - 1);
+                handleChangeSong(position - 1);
               }
             }}
           />
@@ -118,8 +123,7 @@ export const Player = ({ songs }) => {
             color={position === urls.length - 1 ? "disabled" : "inherit"}
             onClick={() => {
               if (position < urls.length) {
-                setActualSong(urls[position + 1]);
-                setPosition(position + 1);
+                handleChangeSong(position + 1);
               }
             }}
           />
