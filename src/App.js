@@ -1,30 +1,22 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { Login } from "./pages/Login";
 import { SignUp } from "pages/SignUp";
-import { Player } from "components/Player";
-import { useState } from "react";
-import { List } from "components/List";
 import { MusicPlayer } from "pages/MusicPlayer";
 import { UploadMusic } from "pages/UploadMusic";
+import { Route, Switch } from "react-router-dom";
 
 function App() {
-  const [songs, setSongs] = useState([]);
-
-  // setTimeout(() => {
-  //   setSong([
-  //     ...song,
-  //     "http://res.cloudinary.com/alick/video/upload/v1502375674/Bedtime_Stories.mp3",
-  //   ]);
-  // }, 2000);
-
-  // setTimeout(() => {
-  //   setSong("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
-  // }, 10000);
-  // return <Player songs={song} />;
+  return (
+    <Switch>
+      <Route path="/" exact component={MusicPlayer} />
+      <Route path="/login" exact component={Login} />
+      <Route path="/signup" exact component={SignUp} />
+      <Route path="/upload" exact component={UploadMusic} />
+    </Switch>
+  );
 
   // return <MusicPlayer />;
-  return <UploadMusic />;
+  // return <UploadMusic />;
 }
 
 export default App;
