@@ -12,7 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
 import Alert from "@material-ui/lab/Alert";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AuthServices from "services/auth.services";
 
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const SignUp = (props) => {
   const classes = useStyles();
+  const history = useHistory();
 
   const authServices = new AuthServices();
 
@@ -73,8 +74,7 @@ export const SignUp = (props) => {
     authServices
       .signup(user)
       .then((res) => {
-        alert("funciona");
-        console.log(res);
+        history.push("/");
       })
       .catch((err) => {
         alert("no funciona");

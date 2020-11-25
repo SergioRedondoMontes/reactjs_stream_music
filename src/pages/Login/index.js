@@ -9,7 +9,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AuthServices from "../../services/auth.services";
 
 const useStyles = makeStyles((theme) => ({
@@ -50,6 +50,7 @@ export const Login = (props) => {
   const authServices = new AuthServices();
   const [email, setEmail] = useState(props.email || "");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
   const handleAlert = () => {
     switch (props.alert) {
@@ -67,8 +68,7 @@ export const Login = (props) => {
     authServices
       .login({ email, password })
       .then((res) => {
-        console.log("response", res);
-        alert("funciona");
+        history.push("/");
       })
       .catch((err) => {
         console.log("error", err);

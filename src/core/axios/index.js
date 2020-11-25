@@ -49,6 +49,7 @@ class axiosClient {
 
   login = (data) => {
     return this.client.post("/auth/login", data, {
+      withCredentials: true,
       headers: { "Content-Type": "application/json" },
     });
   };
