@@ -33,7 +33,7 @@ const UploadMusic = () => {
         }}
       >
         {/*".mp3*" */}
-        <input type="file" name="file" onChange={handleAddSong} />
+        <input type="file" name="song" onChange={handleAddSong} />
         <Button
           variant="contained"
           color="primary"

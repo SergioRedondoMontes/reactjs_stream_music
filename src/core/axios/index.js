@@ -4,6 +4,7 @@ import AuthJWT from "core/AuthJWT";
 class axiosClient {
   constructor() {
     this.client = axios.create({
+      withCredentials: true,
       baseURL: process.env.REACT_APP_API_URL,
     });
     this.auth = new AuthJWT();
@@ -49,7 +50,6 @@ class axiosClient {
 
   login = (data) => {
     return this.client.post("/auth/login", data, {
-      withCredentials: true,
       headers: { "Content-Type": "application/json" },
     });
   };

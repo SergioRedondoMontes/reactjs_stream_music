@@ -46,8 +46,8 @@ class MusicServices {
 
   uploadMusic = (data) => {
     const formData = new FormData();
-    formData.append("file", data);
-    this.service.post("/upload", formData);
+    formData.append("song", data);
+    return this.service.post("/singer/upload", formData);
   };
 }
 
