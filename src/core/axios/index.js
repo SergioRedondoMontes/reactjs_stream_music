@@ -23,7 +23,7 @@ class axiosClient {
         },
       });
     } else {
-      window.location.replace("/");
+      window.location.replace("/login");
     }
   };
 
@@ -40,7 +40,7 @@ class axiosClient {
         },
       });
     } else {
-      window.location.replace("/");
+      window.location.replace("/login");
     }
   };
 
@@ -73,7 +73,7 @@ class axiosClient {
         },
       });
     } else {
-      window.location.replace("/");
+      window.location.replace("/login");
     }
   };
 
@@ -90,7 +90,7 @@ class axiosClient {
         },
       });
     } else {
-      window.location.replace("/");
+      window.location.replace("/login");
     }
   };
 }

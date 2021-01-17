@@ -33,7 +33,7 @@ export const Player = ({ songs }) => {
     <div>
       <ReactPlayer
         playing={play}
-        url={actualSong?.musicSrc}
+        url={`${process.env.REACT_APP_API_STORAGE}${actualSong?.musicSrc}`}
         width="0px"
         height="0px"
         volume={volume}
@@ -47,21 +47,21 @@ export const Player = ({ songs }) => {
       />
       <Grid container style={{ padding: "16px" }}>
         <Grid item xs={6} md={11}>
-          <Typography variant="body1">{actualSong.name}</Typography>
+          <Typography variant="body1">{actualSong.title}</Typography>
         </Grid>
 
         <Grid xs={false} md={3} />
         <Grid item xs={12} md={6}>
           <img
-            src={actualSong.cover}
+            src={`data:image/${actualSong.picture.format};base64,${actualSong.picture.data}`}
             width="100%"
             height="auto"
-            alt={actualSong.name}
+            alt={actualSong.title}
           />
         </Grid>
         <Grid item xs={12}>
           <Typography variant="body1" align="center">
-            {actualSong.name} - {actualSong.singer}
+            {actualSong.title} - {actualSong.artist}
           </Typography>
           <Typography variant="h6" align="center">
             {playedSeconds}

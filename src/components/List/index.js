@@ -34,21 +34,30 @@ const List = ({ songs, handleAddSongToPlayer }) => {
               <SearchContainer
                 search={valueSearch}
                 options={songs}
-                searchParams={["name", "singer"]}
+                searchParams={["title", "artist"]}
                 template={(song, index) => {
+                  const b64 = song.picture.data; // e.g., <Buffer 89 50 4e ... >
+
+                  // const b64 = new Buffer.from(buffer).toString("utf8");
+
+                  const mimeType = "image/" + song.picture.format; // e.g., image/png
+
                   return (
                     <Grow
                       in={true}
                       timeout={index === 0 ? 200 : (index + 1) * 200}
-                      key={`song-${song.name}`}
+                      key={`song-${song._id}`}
                     >
                       <Grid item xs={12}>
                         <ListItem key={song._id}>
                           <ListItemAvatar>
-                            <Avatar alt={song.name} src={song.cover} />
+                            <Avatar
+                              alt={song.title}
+                              src={`data:${mimeType};base64,${b64}`}
+                            />
                           </ListItemAvatar>
                           <ListItemText>
-                            {song.name} - {song.singer}
+                            {song.title} - {song.artist}
                           </ListItemText>
                           <ListItemSecondaryAction>
                             <Button

@@ -7,7 +7,6 @@ class MusicServices {
   }
 
   getMusic = (data) => {
-    //   MOCK
     let response = [
       {
         _id: "sdjasdjknsadjndsjkasd23",
@@ -37,11 +36,20 @@ class MusicServices {
           "https://res.cloudinary.com/ehsanahmadi/video/upload/v1573550770/Sirvan-Khosravi-Dorost-Nemisham-128_kb8urq.mp3",
       },
     ];
-    return Promise.resolve(response);
-    // return this.service.get("/music").then((response) => {
 
-    //   return response;
-    // });
+    return Promise.resolve(response);
+  };
+
+  downloadMusic = () => {
+    return this.service.get("/music").then((response) => {
+      console.log(response);
+      return [
+        ...response.data.songs.map((song) => ({
+          ...song,
+          artist: song.artist.join(" | "),
+        })),
+      ];
+    });
   };
 
   uploadMusic = (data) => {

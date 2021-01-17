@@ -10,10 +10,15 @@ const MusicPlayer = (props) => {
 
   useEffect(() => {
     const musicServices = new MusicServices();
-    musicServices.getMusic().then((response) => {
-      setSongsList(response);
-    });
+    musicServices
+      .downloadMusic()
+      .then((response) => {
+        console.log(response);
+        setSongsList(response);
+      })
+      .catch((err) => {});
   }, []);
+
   return (
     <Grid container style={{ minHeight: "100vh" }}>
       <Grid
